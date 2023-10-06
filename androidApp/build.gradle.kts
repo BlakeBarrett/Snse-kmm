@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.blakebarrett.snse.app.android"
+    namespace = "com.blakebarrett.snse.app"
     compileSdk = 34
     defaultConfig {
-        applicationId = "com.blakebarrett.snse.app.android"
+        applicationId = "com.blakebarrett.snse.app"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -40,13 +40,19 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.compose.ui:ui:1.5.0")
-    implementation("androidx.compose.ui:ui-tooling:1.5.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.5.0")
-    implementation("androidx.compose.foundation:foundation:1.5.0")
-    implementation("androidx.compose.material:material:1.5.0")
-    implementation("androidx.activity:activity-compose:1.7.2")
 
-    val navVersion = "2.7.1"
+    val composeVersion = "1.5.3"
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    implementation("androidx.compose.foundation:foundation:$composeVersion")
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.activity:activity-compose:1.8.0")
+
+    val navVersion = "2.7.4"
     implementation("androidx.navigation:navigation-compose:$navVersion")
+
+    val coroutinesVersion = "1.6.4"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 }

@@ -1,8 +1,6 @@
 package com.blakebarrett.snse.app.android
-
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.graphics.Color
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,30 +22,22 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            SnseApplicationTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    SetupNavigation()
-                }
-            }
-        }
-    }
-}
-
 @Preview
 @Composable
-fun DefaultPreview() {
+fun preview() {
     SnseApplicationTheme {
         SetupNavigation()
     }
 }
 
+data class Sentiment(
+    val timestamp: Long,
+    val feeling: String,
+    val intensity: Int,
+    val color: String,
+    val water: Boolean,
+    val elaborate: String
+)
 enum class Routes(val route: String) {
     NEW("new"), LIST("list")
 }
@@ -93,7 +83,9 @@ fun SetupSentimentsList(
             // The content you want to show in your bottom sheet
             ShowSentiment(id = selectedSentiment.longValue)
         },
-        scaffoldState = bottomSheetScaffoldState
+        scaffoldState = bottomSheetScaffoldState,
+        sheetPeekHeight = 0.dp,
+        sheetShape = MaterialTheme.shapes.medium
     ) { paddingValues ->
         Scaffold(
             modifier = Modifier.padding(paddingValues),
@@ -129,6 +121,22 @@ fun SetupSentimentsList(
 
 @Composable
 fun ShowSentiment(id: Long) {
+    val sentiment = Sentiment(
+        timestamp = id,
+        color = "",
+        intensity = 99,
+        feeling = "",
+        water = true,
+        elaborate = ""
+    )
+
+    Card(
+        modifier = Modifier
+            .fillMaxSize()
+//            .background(sentiment.color)
+    ) {
+
+    }
 }
 
 @Composable
