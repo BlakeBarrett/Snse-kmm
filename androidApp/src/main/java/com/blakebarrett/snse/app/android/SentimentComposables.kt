@@ -24,20 +24,12 @@ import kotlinx.coroutines.launch
 
 @Preview
 @Composable
-fun preview() {
+fun Preview() {
     SnseApplicationTheme {
         SetupNavigation()
     }
 }
 
-data class Sentiment(
-    val timestamp: Long,
-    val feeling: String,
-    val intensity: Int,
-    val color: String,
-    val water: Boolean,
-    val elaborate: String
-)
 enum class Routes(val route: String) {
     NEW("new"), LIST("list")
 }
@@ -80,7 +72,7 @@ fun SetupSentimentsList(
     BottomSheetScaffold(
         modifier = Modifier.fillMaxSize(),
         sheetContent = {
-            // The content you want to show in your bottom sheet
+            // TODO: Capture "back" arrow nav and have it instead dismiss the bottom-sheet-content
             ShowSentiment(id = selectedSentiment.longValue)
         },
         scaffoldState = bottomSheetScaffoldState,
